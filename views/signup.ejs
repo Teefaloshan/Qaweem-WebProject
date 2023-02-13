@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html dir ="rtl" lang="ar">
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name = "Website" content = "width=device-width, initial-scale=1.0">
+        <title>قاوم | تسجيل الدخول</title>
+        <link rel="icon" type="image/png"  href="images/favicon.ico">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="css/login.css">
+    </head>
+    <body>
+        <div class = "hero">
+            <video autoplay loop muted plays-inline class = "back-video">
+                <source src="images/video.mp4" type="video/mp4">
+            </video>
+            <nav>
+                <a href="/"><img src="images/Logo4.png" class = "Logo"></a>
+                <ul>
+                    <li>
+                        <a href="/">الصفحة الرئيسية</a>
+                    </li>
+                    <li>
+                        <a href="#">إستشارات</a>
+                    </li>
+                    <li>
+                        <a href="#">برامج</a>
+                    </li>
+                    <li>
+                        <a href="#">عبر</a>
+                    </li>
+                    <li>
+                        <a href="#">تواصل معنا</a>
+                    </li>
+                    <li>
+                        <a href="/login" class = "login">تسجيل الدخول</a>
+                    </li>
+                </ul>
+            </nav>
+       
+            <div id='login-form'class='login-page'>
+                <div class="form-box">
+                    <div class='button-box'>
+                        <div id='btn' style="right:0"></div>
+                       <button type='button'onclick='login()'class='toggle-btn1' algin = "center">تسجيل الدخول</button> 
+                       <button type='button'onclick='register()'class='toggle-btn2' algin = "center">تسجيل جديد </button>
+                    </div>
+                 <form id='register' class='input-group-register' style="left:50px" action = "/register" method="post">
+                 <input type='text'class='input-field'placeholder='الاسم الاول' required  id="fname" name="fname">
+                 <input type='text'class='input-field'placeholder='اسم العائلة' required id="lname" name="lname">
+                 <input type='email'class='input-field'placeholder='البريد الإلكتروني' required id ="email" name="email">
+                 <input type='password'class='input-field'placeholder='كلمة المرور' required id="pass" min="6" max="12" name="pass">
+                 <input type='password'class='input-field'placeholder='تأكيد كلمة المرور'  required id="repass" name="repass">
+                 <input type='checkbox'class='check-box' id="gree"><br/><span><strong>أوافق على الشروط والأحكام</strong></span>
+                 <button type='submit'class='submit-btn' id="adduser"><strong>تسجيل</strong></button>
+                 </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            var x=document.getElementById('login');
+            var y=document.getElementById('register');
+            var z=document.getElementById('btn');
+            function register()
+            {   location.href = "/register";
+                // x.style.left='-400px';
+                // y.style.left='50px';
+                z.style.left='110px';
+            }
+            function login()
+            {   location.href = "/login";
+                // x.style.left='50px';
+                // y.style.left='450px';
+                z.style.left='0px';
+            }
+        </script>
+        <script>
+            var modal = document.getElementById('login-form');
+            window.onclick = function(event) 
+            {
+                if (event.target == modal) 
+                {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+        
+        <script >
+
+            function saveData() {
+                var fname = document.getElementById("fname").value;
+                var lname = document.getElementById("lname").value;
+                var pass = document.getElementById("repass").value;
+                var password = document.getElementById("pass").value;      
+
+    
+                if ( password == pass) {
+                
+                    alert(username +lastname+ "لقد تم تسجيلك بنجاح");
+                
+                } else {
+                    alert("اسم المستخدم او كلمة المرور غير صحيح !")
+                }}
+                
+			$("#register").submit((event) => {
+				event.preventDefault();
+				$.ajax({
+					type: 'POST',
+					url: '/register',
+					data: $('#register').serialize(),
+					dataType: "json",
+					success: (response) => {
+            location.href = "/login";
+					},
+					error: (err) => {
+            alert(err.message);
+					}
+				})
+			});
+        </script>
+             </div>
+            </div>
+    </body>
+</html>
